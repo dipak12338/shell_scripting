@@ -1,0 +1,18 @@
+DECLARE
+L_BFILE BFILE;
+L_CLOB  clob;
+file_name VARCHAR2(30);
+BEGIN
+file_name := 'index.txt';
+L_BFILE := BFILENAME('USER_DIR', file_name);
+dbms_application_info.set_action('Loading...' || 'File');
+dbms_lob.createtemporary(L_CLOB,true);
+DBMS_LOB.FILEOPEN(L_BFILE, DBMS_LOB.FILE_READONLY);
+DBMS_LOB.LOADFROMFILE(L_CLOB, L_BFILE, DBMS_LOB.GETLENGTH(L_BFILE));
+DBMS_LOB.FILECLOSE(L_BFILE);
+insert into demo2 values(11,to_clob(L_BFILE));
+commit;
+dbms_lob.freetemporary(L_CLOB);
+Exception when others then 
+raise;
+END;
