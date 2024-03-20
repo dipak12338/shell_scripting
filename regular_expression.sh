@@ -1,6 +1,6 @@
-//When we run the below script then it will generate a file with name as current date and time
-Also it automatially changes the content with current time.
-
+# When we run the below script then it will generate a file with name as current date and time
+# Also it automatially changes the content with current time.
+# This is useful at the time when user needs to generate data with current date and time
   
 #!/bin/bash
 cd /root/demo
